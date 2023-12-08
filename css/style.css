@@ -6,6 +6,7 @@
 }
 
 main {
+  margin-top: 10px;
   flex: 1;
   height: 100px
 }
@@ -15,6 +16,13 @@ body {
   color: #f0e1ff;
   margin: 0;
   padding: 0;
+}
+
+p, a{
+  font-size: 16px;
+}
+h1, h2, h3, h4, h5, h6{
+  font-size:20px;
 }
 
 #wrapper {
@@ -30,14 +38,10 @@ body {
 }
 
 /* Header */
-.header {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.header h1 {
-  font-size: 36px;
-  color: #b571fd;
+header {
+  padding: 20px 20px;
+  background-color:#16052b;
+  font-size: 32px;
 }
 
 /* Post */
@@ -46,7 +50,7 @@ body {
 }
 
 .post img {
-  width: 300px; 
+  width: 450px; 
   height: auto; 
   max-width: 100%; 
 }
@@ -63,10 +67,9 @@ a:hover {
 }
 
 #footer {
-  height: 50px;
+  height: 70px;
   margin-top:auto;
 
-  /* Footer Background */
   background-color: #16052b;
   padding: 20px 20px;
 }
