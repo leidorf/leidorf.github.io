@@ -8,7 +8,8 @@
   </head>
   <body id="wrapper">
     <main>
-      <h1>Dada poem generator!</h1>
+      <h1>Dada poem generator</h1>
+      <hr />
 
       <div style="width: 35%">
         <p>
@@ -49,13 +50,18 @@
           document.getElementById("wordsPerLineInput").valueAsNumber;
 
         const words = text.split(" ");
+
+        for (let i = words.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [words[i], words[j]] = [words[j], words[i]];
+        }
+
         const lines = [];
         for (let i = 0; i < words.length; i += wordsPerLine) {
           lines.push(words.slice(i, i + wordsPerLine).join(" "));
         }
-        const poem = lines.join("\n");
 
-        document.getElementById("poemResult").innerText = poem;
+        document.getElementById("poemResult").innerText = lines.join("\n");
       }
     </script>
     <div id="footer">
