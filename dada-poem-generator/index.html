@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dada Poem Generator</title>
+    <link rel="stylesheet" href="./../css/style.css" />
+  </head>
+  <body id="wrapper">
+    <main>
+      <h1>Dada poem generator!</h1>
+
+      <div style="width: 35%">
+        <p>
+          TO MAKE A DADAIST POEM Take a newspaper. Take some scissors. Choose
+          from this paper an article of the length you want to make your poem.
+          Cut out the article. Next carefully cut out each of the words that
+          makes up this article and put them all in a bag. Shake gently. Next
+          take out each cutting one after the other. Copy conscientiously in the
+          order in which they left the bag. The poem will resemble you. And
+          there you are—an infinitely original author of charming sensibility,
+          even though unappreciated by the vulgar herd. —Tristan Tzara, 1920
+        </p>
+      </div>
+      <form id="poemForm">
+        <label for="textInput">Enter Text:</label><br />
+        <textarea id="textInput" name="text" rows="4" cols="50"></textarea
+        ><br />
+
+        <label for="wordsPerLineInput">Number of Words per Line:</label>
+        <input
+          type="number"
+          id="wordsPerLineInput"
+          name="wordsPerLine"
+          min="1"
+          value="5"
+        />
+        <br />
+        <button type="button" onclick="generatePoem()">Generate Poem</button>
+      </form>
+
+      <div id="poemResult"></div>
+    </main>
+
+    <script>
+      function generatePoem() {
+        const text = document.getElementById("textInput").value;
+        const wordsPerLine =
+          document.getElementById("wordsPerLineInput").valueAsNumber;
+
+        const words = text.split(" ");
+        const lines = [];
+        for (let i = 0; i < words.length; i += wordsPerLine) {
+          lines.push(words.slice(i, i + wordsPerLine).join(" "));
+        }
+        const poem = lines.join("\n");
+
+        document.getElementById("poemResult").innerText = poem;
+      }
+    </script>
+    <div id="footer">
+      <a href="https://leidorf.github.io/">Home</a>
+      <p>
+        <span
+          class="copyleft"
+          style="display: inline-block; transform: rotate(180deg)"
+          >&copy;</span
+        >
+        2023 Storage of leidorf
+      </p>
+    </div>
+  </body>
+</html>
