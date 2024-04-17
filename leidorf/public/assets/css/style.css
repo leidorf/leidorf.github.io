@@ -1,0 +1,14 @@
+html,
+body,
+header,
+footer,
+main,
+.container {
+  background-color: #0f0f0f; /* Karanlık arkaplan rengi */
+  color: #ffffff; /* Metin rengi */
+}
+
+.copyleft {
+  display: inline-block;
+  transform: rotate(180deg);
+}
