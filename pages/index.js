@@ -7,11 +7,11 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        <PageHead headTitle="Home Page"></PageHead>
+        <PageHead headTitle="leidorf"></PageHead>
         <div className="container">
           <h1>about me</h1>
           <p>
-            i am interested in cybersecurity, most forms of art, anatolia, foss,
+            hello my name is <span className="fw-light fst-italic">güray dağ</span>. i am interested in cybersecurity, most forms of art, anatolia, foss,
             botanic.
           </p>
         </div>

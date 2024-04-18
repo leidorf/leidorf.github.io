@@ -16,10 +16,14 @@ const About = () => {
                   href="https://github.com/leidorf"
                   className="text-info nav-link mb-4"
                 >
-                  <img alt="Güray Dağ" style={{width:'500px'}} src="/assets/imgs/lain.jpeg"></img>
+                  <img
+                    alt="güray dağ"
+                    style={{ width: "500px" }}
+                    src="/assets/imgs/lain.jpeg"
+                  ></img>
                 </Link>
                 <h5>
-                  Güray Dağ <br />
+                  güray dağ <br />
                   (me)
                 </h5>
               </li>
