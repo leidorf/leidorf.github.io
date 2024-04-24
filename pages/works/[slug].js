@@ -1,52 +1,59 @@
 // /pages/works/[slug].js
 
-import React from "react";
-import { useRouter } from "next/router";
-import Layout from "@/components/layout/Layout";
-import PageHead from "@/components/layout/PageHead";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import Layout from '@/components/layout/Layout';
 
-const works = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-
+const WorksDetailPage = ({ content }) => {
   return (
-    <>
-      <Layout>
-        <PageHead headTitle={slug} />
-        <div className="container">
-          <h1>İş Detayı: {slug}</h1>
-          <p>İçerik buraya gelecek.</p>
-        </div>
-      </Layout>
-    </>
+    <Layout>
+      <div>
+        <h1>İş Detayı: {content.title}</h1>
+        <h2>Kategori: {content.category}</h2>
+        <div dangerouslySetInnerHTML={{ __html: content.body }} />
+      </div>
+    </Layout>
   );
 };
 
-export default works;
+export async function getStaticPaths() {
+  // Tüm iş dosyalarının dizinini al
+  const worksDirectory = path.join(process.cwd(), 'works');
+  const fileNames = fs.readdirSync(worksDirectory);
 
-/* 
-export default WorksPage;
+  // Her dosyanın içeriğini alarak paths dizisine ekleyin
+  const paths = fileNames.map((fileName) => {
+    const fullPath = path.join(worksDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    return {
+      params: {
+        slug: fileName.replace(/\.md$/, ''),
+      },
+      content: matterResult.data,
+    };
+  });
 
+  return { paths, fallback: false };
+}
 
-import Layout from "@/components/layout/Layout";
-import PageHead from "@/components/layout/PageHead";
-import React from "react";
+export async function getStaticProps({ params }) {
+  // Markdown dosyasından içeriği al
+  const worksDirectory = path.join(process.cwd(), 'works');
+  const fullPath = path.join(worksDirectory, `${params.slug}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const matterResult = matter(fileContents);
 
-const Works = () => {
-  return (
-    <>
-      <Layout>
-        <PageHead headTitle="works" />
-        <div className="text-center">
-          works are
-          <br />
-          ...
-          <br /> work in progress
-        </div>
-      </Layout>
-    </>
-  );
-};
+  return {
+    props: {
+      content: {
+        title: matterResult.data.title,
+        category: matterResult.data.category,
+        body: matterResult.content,
+      },
+    },
+  };
+}
 
-export default Works;
- */
+export default WorksDetailPage;
