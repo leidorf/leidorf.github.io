@@ -1,59 +1,57 @@
-// /pages/works/[slug].js
+import { useRouter } from "next/router";
+import getWorks from "@/core/getWorks";
+import Layout from "@/components/layout/Layout";
+import PageHead from "@/components/layout/PageHead";
+import Link from "next/link";
 
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import Layout from '@/components/layout/Layout';
+export default function Category({ category }) {
+  const router = useRouter();
+  const { slug } = router.query;
 
-const WorksDetailPage = ({ content }) => {
   return (
-    <Layout>
-      <div>
-        <h1>İş Detayı: {content.title}</h1>
-        <h2>Kategori: {content.category}</h2>
-        <div dangerouslySetInnerHTML={{ __html: content.body }} />
-      </div>
-    </Layout>
+    <>
+      <Layout>
+        <PageHead headTitle={slug} />
+        <div className="container">
+          <h1>{slug}</h1>
+          <ul>
+            {category &&
+              category.map((content) => (
+                <li key={content.slug}>
+                  <Link
+                    href={`/works/${slug}/${content.slug}`}
+                    className="text-decoration-none text-danger"
+                  >
+                    {content.title} - {content.author}
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </Layout>
+    </>
   );
-};
-
-export async function getStaticPaths() {
-  // Tüm iş dosyalarının dizinini al
-  const worksDirectory = path.join(process.cwd(), 'works');
-  const fileNames = fs.readdirSync(worksDirectory);
-
-  // Her dosyanın içeriğini alarak paths dizisine ekleyin
-  const paths = fileNames.map((fileName) => {
-    const fullPath = path.join(worksDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
-    return {
-      params: {
-        slug: fileName.replace(/\.md$/, ''),
-      },
-      content: matterResult.data,
-    };
-  });
-
-  return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
-  // Markdown dosyasından içeriği al
-  const worksDirectory = path.join(process.cwd(), 'works');
-  const fullPath = path.join(worksDirectory, `${params.slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const matterResult = matter(fileContents);
+export async function getStaticPaths() {
+  const categories = getWorks();
+  const paths = Object.keys(categories).map((category) => ({
+    params: { slug: category },
+  }));
 
   return {
-    props: {
-      content: {
-        title: matterResult.data.title,
-        category: matterResult.data.category,
-        body: matterResult.content,
-      },
-    },
+    paths,
+    fallback: false,
   };
 }
 
-export default WorksDetailPage;
+export async function getStaticProps({ params }) {
+  const categories = getWorks();
+  const category = categories[params.slug] || [];
+
+  return {
+    props: {
+      category,
+    },
+  };
+}

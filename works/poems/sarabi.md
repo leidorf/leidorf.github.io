@@ -1,7 +1,7 @@
 ---
 title: Şarabi
 author: Ferhan Şensoy
-category: poem
+category: poems
 ---
 
 Beyoğlu'nda gezerim  

@@ -1,67 +1,44 @@
-// /pages/works/category/[slug].js
+// pages/works/[category]/[slug].js
 
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import Layout from "@/components/layout/Layout";
-import PageHead from "@/components/layout/PageHead";
+import { useRouter } from 'next/router';
+import getWorks from '@/core/getWorks';
 
-const WorksCategoryPage = ({ content }) => {
-  return (
-    <>
-      <PageHead />
-      <Layout>
-        <div className="container">
-          <h1>{content.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: content.body }} />
+export default function ContentPage({ content }) {
+    const router = useRouter();
+    const { category, slug } = router.query;
+
+    return (
+        <div>
+            <h1>{content.title}</h1>
+            <p>Author: {content.author}</p>
+            <p>Category: {category}</p>
+            <p>Slug: {slug}</p>
+            <p>Content: {content.content}</p>
         </div>
-      </Layout>
-    </>
-  );
-};
+    );
+}
 
 export async function getStaticPaths() {
-  // Tüm iş kategorilerini al
-  const categories = await getCategories();
+    const categories = getWorks();
+    const paths = Object.keys(categories).reduce((acc, category) => {
+        const contentSlugs = categories[category].map(content => content.slug);
+        const categoryPaths = contentSlugs.map(slug => ({ params: { category, slug } }));
+        return [...acc, ...categoryPaths];
+    }, []);
 
-  // Her kategorideki işlerin slug'larını al
-  const paths = categories.flatMap((category) => {
-    const worksDirectory = path.join(process.cwd(), "works", category);
-    const fileNames = fs.readdirSync(worksDirectory);
-    return fileNames.map((fileName) => ({
-      params: {
-        category,
-        slug: fileName.replace(/\.md$/, ""),
-      },
-    }));
-  });
-
-  return { paths, fallback: false };
+    return {
+        paths,
+        fallback: false
+    };
 }
 
 export async function getStaticProps({ params }) {
-  // Markdown dosyasından içeriği al
-  const { category, slug } = params;
-  const worksDirectory = path.join(process.cwd(), "works", category);
-  const fullPath = path.join(worksDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const matterResult = matter(fileContents);
+    const categories = getWorks();
+    const content = categories[params.category].find(item => item.slug === params.slug);
 
-  return {
-    props: {
-      content: {
-        title: matterResult.data.title,
-        body: matterResult.content,
-      },
-    },
-  };
-}
-
-export default WorksCategoryPage;
-
-// Örnek bir getCategories fonksiyonu
-async function getCategories() {
-  const worksDirectory = path.join(process.cwd(), "works");
-  const categories = fs.readdirSync(worksDirectory);
-  return categories;
+    return {
+        props: {
+            content
+        }
+    };
 }
