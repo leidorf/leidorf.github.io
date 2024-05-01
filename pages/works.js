@@ -1,7 +1,9 @@
+//works/index.js
+
 import Link from "next/link";
-import getWorks from "@/core/getWorks";
 import Layout from "@/components/layout/Layout";
 import PageHead from "@/components/layout/PageHead";
+import getCategory from "@/core/getCategory";
 
 export default function Works({ categories }) {
   return (
@@ -26,7 +28,7 @@ export default function Works({ categories }) {
 }
 
 export async function getStaticProps() {
-  const categories = getWorks();
+  const categories = getCategory();
   return {
     props: {
       categories,

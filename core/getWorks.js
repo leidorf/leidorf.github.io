@@ -1,40 +1,23 @@
-// Core/getWorks.js
-
 const fs = require('fs');
-const matter = require('gray-matter');
 const path = require('path');
 
-function getWorks() {
-    const worksDir = path.join(process.cwd(), 'works');
+function getWorks(category) {
+    const worksDir = path.join(process.cwd(), 'works', category);
 
-    const categories = {};
+    // Kategoriye ait dosyaların listesini al
+    const files = fs.readdirSync(worksDir);
 
-    fs.readdirSync(worksDir).forEach(category => {
-        const categoryPath = path.join(worksDir, category);
+    // Dosyaların içeriğini saklamak için bir dizi oluştur
+    const contentArray = [];
 
-        // Skip if not a directory
-        if (!fs.lstatSync(categoryPath).isDirectory()) return;
-
-        categories[category] = [];
-
-        fs.readdirSync(categoryPath).forEach(file => {
-            const filePath = path.join(categoryPath, file);
-            const fileContent = fs.readFileSync(filePath, 'utf-8');
-            const { data, content } = matter(fileContent);
-            
-            // Assuming markdown files have 'title' and 'author' properties in their front matter
-            if (data.title && data.author) {
-                categories[category].push({
-                    title: data.title,
-                    author: data.author,
-                    content, // Add content here
-                    slug: file.replace('.md', '').toLowerCase().replace(/\s+/g, '-') // Assuming markdown file names are unique
-                });
-            }
-        });
+    // Her dosya için içeriği oku ve diziye ekle
+    files.forEach(file => {
+        const filePath = path.join(worksDir, file);
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        contentArray.push(fileContent);
     });
 
-    return categories;
+    return contentArray;
 }
 
 module.exports = getWorks;

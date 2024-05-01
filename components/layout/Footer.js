@@ -14,7 +14,7 @@ const Footer = () => {
               <img
                 className="bi"
                 src="/assets/imgs/star.png"
-                style={{ opacity: "75%", width:"19px"}}
+                style={{ opacity: "75%", width: "19px" }}
               ></img>
             </Link>
             <div className="mb-3 mb-md-0 text-white-50">
@@ -29,6 +29,7 @@ const Footer = () => {
               <Link
                 className="text-body-secondary"
                 href="https://www.instagram.com/guraydg/"
+                target="_blank"
               >
                 <img
                   className="bi"
@@ -42,11 +43,12 @@ const Footer = () => {
               <Link
                 className="text-body-secondary"
                 href="https://github.com/leidorf"
+                target="_blank"
               >
                 <img
                   className="bi"
                   src="/assets/imgs/github.jpeg"
-                  style={{ opacity: "55%", width:"19px"}}
+                  style={{ opacity: "55%", width: "19px" }}
                 ></img>
               </Link>
             </li>

@@ -1,44 +1,55 @@
-// pages/works/[category]/[slug].js
+// works/category/[slug].js
 
-import { useRouter } from 'next/router';
-import getWorks from '@/core/getWorks';
+import Link from 'next/link';
+import getCategory from '@/core/getCategory';
 
-export default function ContentPage({ content }) {
-    const router = useRouter();
-    const { category, slug } = router.query;
-
+export default function Category({ works }) {
     return (
         <div>
-            <h1>{content.title}</h1>
-            <p>Author: {content.author}</p>
-            <p>Category: {category}</p>
-            <p>Slug: {slug}</p>
-            <p>Content: {content.content}</p>
+            <h1>Works</h1>
+            <ul>
+                {works.map(work => (
+                    <li key={work.slug}>
+                        <Link href={`/works/${work.slug}`}>
+                            <a>{work.title}</a>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export async function getStaticPaths() {
-    const categories = getWorks();
-    const paths = Object.keys(categories).reduce((acc, category) => {
-        const contentSlugs = categories[category].map(content => content.slug);
-        const categoryPaths = contentSlugs.map(slug => ({ params: { category, slug } }));
-        return [...acc, ...categoryPaths];
-    }, []);
-
+export async function getStaticProps({ params }) {
+    const { slug } = params;
+    const categories = getCategory();
+    
+    // Check if the category exists
+    if (!categories[slug]) {
+        return {
+            notFound: true,
+        };
+    }
+    
+    const works = categories[slug];
+    
     return {
-        paths,
-        fallback: false
+        props: {
+            works,
+        },
     };
 }
 
-export async function getStaticProps({ params }) {
-    const categories = getWorks();
-    const content = categories[params.category].find(item => item.slug === params.slug);
-
+export async function getStaticPaths() {
+    const categories = getCategory();
+    const paths = Object.keys(categories).map(category => ({
+        params: {
+            slug: category,
+        },
+    }));
+    
     return {
-        props: {
-            content
-        }
+        paths,
+        fallback: false,
     };
 }

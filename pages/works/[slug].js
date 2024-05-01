@@ -1,8 +1,10 @@
+//works/[slug].js
+
 import { useRouter } from "next/router";
-import getWorks from "@/core/getWorks";
 import Layout from "@/components/layout/Layout";
 import PageHead from "@/components/layout/PageHead";
 import Link from "next/link";
+import getCategory from "@/core/getCategory";
 
 export default function Category({ category }) {
   const router = useRouter();
@@ -34,7 +36,7 @@ export default function Category({ category }) {
 }
 
 export async function getStaticPaths() {
-  const categories = getWorks();
+  const categories = getCategory();
   const paths = Object.keys(categories).map((category) => ({
     params: { slug: category },
   }));
@@ -46,7 +48,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const categories = getWorks();
+  const categories = getCategory();
   const category = categories[params.slug] || [];
 
   return {
