@@ -24,12 +24,12 @@ function getCategory() {
             
             // Assuming markdown files have 'title' and 'author' properties in their front matter
             if (data.title && data.author) {
-                categories[data.category] = categories[data.category] || []; // Ensure category exists
-                categories[data.category].push({
+                categories[category] = categories[category] || []; // Ensure category exists
+                categories[category].push({
                     title: data.title,
                     author: data.author,
                     content, // Add content here
-                    slug: file.replace('.md', '').toLowerCase().replace(/\s+/g, '-') // Assuming markdown file names are unique
+                    slug: data.slug
                 });
             }
         });
@@ -39,3 +39,4 @@ function getCategory() {
 }
 
 module.exports = getCategory;
+

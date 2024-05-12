@@ -1,4 +1,5 @@
 ---
+slug: defteri-tevessul-yapiyor
 title: Defteri Tevessül Yapıyor
 author: Güray Dağ
 category: poems

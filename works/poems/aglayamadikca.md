@@ -1,4 +1,5 @@
 ---
+slug: aglayamadikca
 title: Ağlayamadıkça
 author: Güray Dağ
 category: poems

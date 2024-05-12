@@ -1,55 +1,63 @@
-// works/category/[slug].js
-
-import Link from 'next/link';
-import getCategory from '@/core/getCategory';
-
-export default function Category({ works }) {
-    return (
-        <div>
-            <h1>Works</h1>
-            <ul>
-                {works.map(work => (
-                    <li key={work.slug}>
-                        <Link href={`/works/${work.slug}`}>
-                            <a>{work.title}</a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-}
-
-export async function getStaticProps({ params }) {
-    const { slug } = params;
-    const categories = getCategory();
-    
-    // Check if the category exists
-    if (!categories[slug]) {
-        return {
-            notFound: true,
-        };
-    }
-    
-    const works = categories[slug];
-    
-    return {
-        props: {
-            works,
-        },
-    };
-}
+import fs from 'fs';
+import matter from 'gray-matter';
 
 export async function getStaticPaths() {
-    const categories = getCategory();
-    const paths = Object.keys(categories).map(category => ({
+  try {
+    const categories = fs.readdirSync('works');
+
+    let paths = [];
+    for (const category of categories) {
+      const categoryFiles = fs.readdirSync(`works/${category}`);
+      const categoryPaths = categoryFiles.map((fileName) => ({
         params: {
-            slug: category,
-        },
-    }));
-    
+          category: category,
+          slug: fileName.replace(/\.md$/, '') 
+        }   
+      }));
+      paths = [...paths, ...categoryPaths];
+    }
+
     return {
-        paths,
-        fallback: false,
-    };
-}
+      paths,
+      fallback: "blocking"
+    };  
+  } catch (error) {
+    console.error(error);
+
+    return {
+      paths: [], 
+      fallback: false
+    };  
+  }
+};
+
+export async function getStaticProps ({ params }) {
+  try {
+    const fileName = fs.readFileSync(`/works/${params.category}/${params.slug}.md`, 'utf-8');
+    const { data: frontmatter, content } = matter(fileName);
+
+    return {
+      props: {
+        frontmatter,
+        content
+      }   
+    };  
+  } catch (error) {
+    console.error(error);
+
+    return {
+      props: {}
+    };  
+  }
+};
+
+function Post ({ frontmatter, content }) {
+  return (
+    <div className="prose mx-auto mt-8">
+      <h1>{ frontmatter.title }</h1>
+      <div>{ content }</div>
+    </div>
+  );
+};
+
+export default Post;

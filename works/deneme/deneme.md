@@ -1,4 +1,5 @@
 ---
+slug: deneme
 title: deneme-title
 author: deneme-author
 category: deneme

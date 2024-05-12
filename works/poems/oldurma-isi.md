@@ -1,4 +1,5 @@
 ---
+slug: oldurma-isi
 title: Oldurma İşi
 author: Güray Dağ
 category: poems

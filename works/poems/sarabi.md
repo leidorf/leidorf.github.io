@@ -1,4 +1,5 @@
 ---
+slug: sarabi
 title: Şarabi
 author: Ferhan Şensoy
 category: poems

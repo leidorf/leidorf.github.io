@@ -14,6 +14,9 @@ const HomePage = () => {
             hello my name is <span className="fw-light fst-italic">güray dağ</span>. i am interested in cybersecurity, most forms of art, anatolia, foss,
             botanic.
           </p>
+          <p>
+            <Link href={'works'} className="text-decoration-none text-danger">here</Link> are the works i have done/liked.
+          </p>
         </div>
       </Layout>
     </>
