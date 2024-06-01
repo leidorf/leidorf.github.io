@@ -18,8 +18,8 @@ const About = () => {
                 >
                   <img
                     alt="güray dağ"
-                    style={{ width: "500px" }}
-                    src="/assets/imgs/lain.jpeg"
+                    style={{ width: "350px" }}
+                    src="https://avatars.githubusercontent.com/u/93585259?v=4"
                   ></img>
                 </Link>
                 <h5>
