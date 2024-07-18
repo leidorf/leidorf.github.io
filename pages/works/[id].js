@@ -1,6 +1,6 @@
-import { getAllWorkIds, getWorkData } from '../../lib/works';
-import Layout from '@/components/layout/Layout';
-import PageHead from '@/components/layout/PageHead';
+import { getAllWorkIds, getWorkData } from "../../lib/works";
+import Layout from "@/components/layout/Layout";
+import PageHead from "@/components/layout/PageHead";
 
 export async function getStaticProps({ params }) {
   const workData = await getWorkData(params.id);
@@ -25,8 +25,10 @@ export default function Work({ workData }) {
       <Layout>
         <PageHead headTitle={workData.title} />
         <div className="container">
-          <h1>{workData.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: workData.contentHtml }} />
+          <div>
+            <h3 className="text-danger">{workData.title}</h3>
+            <p dangerouslySetInnerHTML={{ __html: workData.contentHtml }}></p>
+          </div>
         </div>
       </Layout>
     </>

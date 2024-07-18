@@ -1,7 +1,7 @@
-import { getSortedWorksData } from '../lib/works';
-import Link from 'next/link';
-import Layout from '@/components/layout/Layout';
-import PageHead from '@/components/layout/PageHead';
+import Link from "next/link";
+import { getSortedWorksData } from "../lib/works";
+import Layout from "@/components/layout/Layout";
+import PageHead from "@/components/layout/PageHead";
 
 export async function getStaticProps() {
   const allWorksData = getSortedWorksData();
@@ -18,12 +18,12 @@ export default function Works({ allWorksData }) {
       <Layout>
         <PageHead headTitle="Works" />
         <div className="container">
-          <h1>Works</h1>
+          <h2>works</h2>
           <ul>
-            {allWorksData.map(({ id, title }) => (
-              <li key={id}>
-                <Link href={`/works/${id}`} legacyBehavior>
-                  <a>{title}</a>
+            {allWorksData.map((work) => (
+              <li key={work.id}>
+                <Link href={`/works/${work.id}`} className="link-danger">
+                    {work.title} ({work.category})
                 </Link>
               </li>
             ))}

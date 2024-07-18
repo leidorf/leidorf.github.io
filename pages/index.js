@@ -11,11 +11,11 @@ const HomePage = () => {
         <div className="container">
           <h1>about me</h1>
           <p>
-            hello my name is <span className="fw-light fst-italic">güray dağ</span>. i am interested in cybersecurity, most forms of art, anatolia, foss,
+            hello my name is <span className="fw-light fst-italic">güray dağ</span>. i am interested in cybersecurity, most forms of art, anatolia, foss, linux,
             botanic.
           </p>
           <p>
-            <Link href={'works'} className="text-decoration-none text-danger">here</Link> are the works i have done/liked.
+            <Link href={'works'} className="text-decoration-none link-danger">here</Link> are the works i have done/liked.
           </p>
         </div>
       </Layout>
