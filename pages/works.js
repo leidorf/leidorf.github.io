@@ -1,22 +1,29 @@
-//works/index.js
+import { getSortedWorksData } from '../lib/works';
+import Link from 'next/link';
+import Layout from '@/components/layout/Layout';
+import PageHead from '@/components/layout/PageHead';
 
-import Link from "next/link";
-import Layout from "@/components/layout/Layout";
-import PageHead from "@/components/layout/PageHead";
-import getCategory from "@/core/getCategory";
+export async function getStaticProps() {
+  const allWorksData = getSortedWorksData();
+  return {
+    props: {
+      allWorksData,
+    },
+  };
+}
 
-export default function Works({ categories }) {
+export default function Works({ allWorksData }) {
   return (
     <>
       <Layout>
-        <PageHead headTitle="works"/>
+        <PageHead headTitle="Works" />
         <div className="container">
-          <h1>categories</h1>
+          <h1>Works</h1>
           <ul>
-            {Object.keys(categories).map((category) => (
-              <li key={category}>
-                <Link href={`/works/${category}`} className="text-decoration-none text-danger">
-                  {category}
+            {allWorksData.map(({ id, title }) => (
+              <li key={id}>
+                <Link href={`/works/${id}`} legacyBehavior>
+                  <a>{title}</a>
                 </Link>
               </li>
             ))}
@@ -25,13 +32,4 @@ export default function Works({ categories }) {
       </Layout>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const categories = getCategory();
-  return {
-    props: {
-      categories,
-    },
-  };
 }

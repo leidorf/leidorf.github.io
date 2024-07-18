@@ -1,4 +1,4 @@
-import fs from 'fs';
+/* import fs from 'fs';
 import matter from 'gray-matter';
 
 export async function getStaticPaths() {
@@ -61,3 +61,4 @@ function Post ({ frontmatter, content }) {
 };
 
 export default Post;
+ */

@@ -2,7 +2,7 @@
 slug: aglayamadikca
 title: Ağlayamadıkça
 author: Güray Dağ
-category: poems
+category: poem
 ---
 
 Ağlamak bir çözüm gibi gelse de bazen, ağlayamıyorum

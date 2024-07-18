@@ -2,7 +2,7 @@
 slug: sarabi
 title: Şarabi
 author: Ferhan Şensoy
-category: poems
+category: poem
 ---
 
 Beyoğlu'nda gezerim  

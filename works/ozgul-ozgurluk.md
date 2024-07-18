@@ -2,7 +2,7 @@
 slug: ozgul-ozgurluk
 title: Özgül Özgürlük
 author: Güray Dağ
-category: poems
+category: poem
 ---
 
 İstemiyorum

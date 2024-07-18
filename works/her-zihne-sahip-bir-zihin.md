@@ -2,7 +2,7 @@
 slug: her-zihne-sahip-bir-zihin
 title: Her Zihne Sahip Bir Zihin
 author: Güray Dağ
-category: poems
+category: poem
 ---
 
 Tercih konusu edilebilen koydum sonra görüş şekilde.
