@@ -19,11 +19,15 @@ export default function Works({ allWorksData }) {
         <PageHead headTitle="Works" />
         <div className="container">
           <h2>works</h2>
+          <p>(i seek the forgiveness of the creators for the works i like that i display on the page without permission)</p>
           <ul>
             {allWorksData.map((work) => (
               <li key={work.id}>
-                <Link href={`/works/${work.id}`} className="link-danger">
-                    {work.title} ({work.category})
+                <Link
+                  href={`/works/${work.id}`}
+                  className="link-danger"
+                >
+                  {work.title} ({work.category})
                 </Link>
               </li>
             ))}

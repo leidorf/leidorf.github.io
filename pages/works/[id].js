@@ -28,6 +28,7 @@ export default function Work({ workData }) {
           <div>
             <h3 className="text-danger">{workData.title}</h3>
             <p dangerouslySetInnerHTML={{ __html: workData.contentHtml }}></p>
+            <p className="text-danger">- {workData.author}</p>
           </div>
         </div>
       </Layout>

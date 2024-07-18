@@ -22,10 +22,10 @@ const About = () => {
                     src="https://avatars.githubusercontent.com/u/93585259?v=4"
                   ></img>
                 </Link>
-                <h5>
+                <p className="text-light h5">
                   güray dağ <br />
                   (me)
-                </h5>
+                </p>
               </li>
             </ul>
           </div>

@@ -8,7 +8,7 @@ const Header = () => {
         <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
           <Link
             href="/"
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none text-white"
+            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-light link-opacity-50-hover"
           >
             <img
               className="bi me-2"
@@ -20,12 +20,12 @@ const Header = () => {
 
           <ul className="nav nav-pills">
             <li className="nav-link">
-              <Link href="/works" className="nav-link text-white">
+              <Link href="/works" className="nav-link link-light link-opacity-50-hover">
                 works
               </Link>
             </li>
             <li className="nav-link">
-              <Link href="/about" className="nav-link text-white">
+              <Link href="/about" className="nav-link link-light link-opacity-50-hover">
                 about
               </Link>
             </li>
