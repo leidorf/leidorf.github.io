@@ -4,7 +4,10 @@ html,
 body,
 header,
 footer,
-main,
+main {
+  background-color: #0f0f0f; /* Karanlık arkaplan rengi */
+  color: #ffffff; /* Metin rengi */
+}
 .container {
   background-color: #0f0f0f; /* Karanlık arkaplan rengi */
   color: #ffffff; /* Metin rengi */
