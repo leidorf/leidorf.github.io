@@ -4,11 +4,9 @@ html,
 body,
 header,
 footer,
-main {
-  background-color: #0f0f0f; /* Karanlık arkaplan rengi */
-  color: #ffffff; /* Metin rengi */
-}
-.container {
+main,
+.container,
+#__next {
   background-color: #0f0f0f; /* Karanlık arkaplan rengi */
   color: #ffffff; /* Metin rengi */
 }
