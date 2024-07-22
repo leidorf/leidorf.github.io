@@ -23,10 +23,10 @@ export default function Work({ workData }) {
   return (
     <>
       <Layout>
-        <PageHead headTitle={workData.title} />
+        <PageHead headTitle={workData.title.toLowerCase()} />
         <div className="container">
           <div>
-            <h3 className="text-danger">{workData.title}</h3>
+            <h3 className="text-danger">{workData.title.toLowerCase()}</h3>
             <p dangerouslySetInnerHTML={{ __html: workData.contentHtml }}></p>
             <p className="text-danger">- {workData.author}</p>
           </div>

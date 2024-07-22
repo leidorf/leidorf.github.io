@@ -16,7 +16,7 @@ export default function Works({ allWorksData }) {
   return (
     <>
       <Layout>
-        <PageHead headTitle="Works" />
+        <PageHead headTitle="works" />
         <div className="container">
           <h2>works</h2>
           <p>(i seek the forgiveness of the creators for the works i like that i display on the page without permission)</p>
