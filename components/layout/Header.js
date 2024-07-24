@@ -8,7 +8,7 @@ const Header = () => {
         <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
           <Link
             href="/"
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-light link-opacity-50-hover"
+            className="d-flex align-items-center me-md-auto text-decoration-none link-light link-opacity-50-hover"
           >
             <img
               className="bi me-2"
