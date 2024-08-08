@@ -28,6 +28,7 @@ const About = () => {
                 </p>
               </li>
             </ul>
+            <p className="text-white-50">i am interested in cybersecurity, most forms of art, anatolia, foss, linux, botanic.</p>
           </div>
         </section>
       </Layout>
