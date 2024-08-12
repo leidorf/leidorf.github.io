@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 html,
 body,
 header,
@@ -11,8 +12,8 @@ footer,
 main,
 .container,
 #__next {
-  background-color: #0f0f0f; /* Karanlık arkaplan rengi */
-  color: #ffffff; /* Metin rengi */
+  background-color: #0f0f0f; 
+  color: #ffffff; 
 }
 
 .copyleft {
