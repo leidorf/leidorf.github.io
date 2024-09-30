@@ -32,7 +32,7 @@ export default function Works({ allWorksData }) {
         <PageHead headTitle="works" />
         <div className="container">
           <h2>works</h2>
-          <p className="fw-lighter">(i seek the forgiveness of the creators for the works i like that i display on the page without permission)</p>
+          <p className="fw-lighter">(i apologize to the authors of the works i like and have included on my page without their consent.)</p>
           {Object.keys(groupedWorks).map((category) => (
             <div key={category}>
               <h4>{category}</h4>
