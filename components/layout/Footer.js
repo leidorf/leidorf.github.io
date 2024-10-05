@@ -16,7 +16,7 @@ const Footer = () => {
             </Link>
             <div className="text-white-50">
               <span className="copyleft me-1">&copy;</span>
-              2024 leidorf
+              2024 leidorf ☭
             </div>
           </div>
 
