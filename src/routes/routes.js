@@ -14,7 +14,7 @@ export const routes = [
   {
     path: ROUTE_PATHS.HOME,
     element: <HomePage />,
-    title: "home",
+    title: "leidorf",
   },
   {
     path: ROUTE_PATHS.WORKS,
