@@ -13,13 +13,19 @@ const Header = ({ light, onToggleTheme }) => {
   return (
     <AppBar
       position="static"
+      className="halftone"
       sx={{
-        backgroundColor: "transparent",
         borderBottom: "1px solid #FE5959",
         borderRadius: "0 0 1rem 1rem",
         boxShadow: "none",
         padding: "0.5rem",
         marginBottom: "2rem",
+
+        backgroundImage: `radial-gradient(circle at center, #fe5959 1px, transparent 0),
+       radial-gradient(circle at center, #fe5959 1px, transparent 0)`,
+        backgroundSize: "1.35rem 1.35rem",
+        backgroundPosition: "0 0, 0.675rem 0.675rem",
+        backgroundColor: theme.palette.background.default,
       }}
     >
       <Toolbar

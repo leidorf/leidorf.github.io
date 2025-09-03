@@ -8,6 +8,9 @@ const themeLight = createTheme({
     background: {
       default: "#d9d9d9",
     },
+    text: {
+      primary: "#000",
+    },
   },
 });
 
@@ -32,7 +35,7 @@ function App() {
   return (
     <ThemeProvider theme={light ? themeLight : themeDark}>
       <CssBaseline />
-      <AppRouter light={light} onToggleTheme={toggleTheme}  />
+      <AppRouter light={light} onToggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }
