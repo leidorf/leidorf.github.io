@@ -1,16 +1,20 @@
+import { useTheme } from "@emotion/react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 const HomePage = () => {
+  const theme = useTheme();
   return (
     <Container
       sx={{
-        border: "1px solid #FE5959",
+        border: `1px solid ${theme.palette.color}`,
         borderRadius: "1rem",
         padding: "2rem",
       }}
     >
-      <Typography variant="h1">/</Typography>
+      <Typography variant="h1" fontSize={64}>
+        /
+      </Typography>
       <Typography variant="body1">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

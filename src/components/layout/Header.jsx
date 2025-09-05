@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 
 const Header = ({ light, onToggleTheme }) => {
   const theme = useTheme();
@@ -15,14 +18,14 @@ const Header = ({ light, onToggleTheme }) => {
       position="static"
       className="halftone"
       sx={{
-        borderBottom: "1px solid #FE5959",
+        borderBottom: `1px solid ${theme.palette.color} `,
         borderRadius: "0 0 1rem 1rem",
         boxShadow: "none",
         padding: "0.5rem",
         marginBottom: "2rem",
 
-        backgroundImage: `radial-gradient(circle at center, #fe5959 1px, transparent 0),
-       radial-gradient(circle at center, #fe5959 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0),
+       radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0)`,
         backgroundSize: "1.35rem 1.35rem",
         backgroundPosition: "0 0, 0.675rem 0.675rem",
         backgroundColor: theme.palette.background.default,
@@ -43,7 +46,7 @@ const Header = ({ light, onToggleTheme }) => {
               textDecoration: "none",
               color: theme.palette.text.primary,
               "&:hover": {
-                color: "#FE5959",
+                color: theme.palette.color,
               },
             }}
           >
@@ -59,7 +62,7 @@ const Header = ({ light, onToggleTheme }) => {
                 textDecoration: "none",
                 color: theme.palette.text.primary,
                 "&:hover": {
-                  color: "#FE5959",
+                  color: theme.palette.color,
                 },
               }}
             >
@@ -75,7 +78,7 @@ const Header = ({ light, onToggleTheme }) => {
                 textDecoration: "none",
                 color: theme.palette.text.primary,
                 "&:hover": {
-                  color: "#FE5959",
+                  color: theme.palette.color,
                 },
               }}
             >
@@ -96,7 +99,7 @@ const Header = ({ light, onToggleTheme }) => {
               },
             }}
           >
-            {light ? "🌙" : "☀️"}
+            {light ? <DarkModeIcon /> : <LightModeIcon />}
           </Button>
         </Box>
       </Toolbar>

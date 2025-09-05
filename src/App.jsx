@@ -5,22 +5,24 @@ import { useState } from "react";
 
 const themeLight = createTheme({
   palette: {
+    color:"#D94848",
     background: {
-      default: "#d9d9d9",
+      default: "#f2f2f2",
     },
     text: {
-      primary: "#000",
+      primary: "#060608",
     },
   },
 });
 
 const themeDark = createTheme({
   palette: {
+    color: "#D94848",
     background: {
       default: "#1e1e1e",
     },
     text: {
-      primary: "#fff",
+      primary: "#f2f2f2",
     },
   },
 });

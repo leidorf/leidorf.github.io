@@ -9,18 +9,35 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        borderTop: "1px solid #FE5959",
+        borderTop: `1px solid ${theme.palette.color}`,
         borderBottom: "0",
         borderRadius: "1rem 1rem 0 0",
         boxShadow: "none",
         padding: "2rem",
+        paddingBottom: "4rem",
         marginTop: "2rem",
-
-        backgroundImage: `radial-gradient(circle at center, rgba(254,89,89),  1px, transparent 0),
-       radial-gradient(circle at center, rgba(254,89,89), 1px, transparent 0)`,
-        backgroundSize: "1.35rem 1.35rem",
-        backgroundPosition: "0 0, 0.675rem 0.675rem",
+        position: "relative",
         backgroundColor: theme.palette.background.default,
+
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          height: "100%",
+          backgroundImage: `radial-gradient(circle at center, ${theme.palette.color},  1px, transparent 0),
+          radial-gradient(circle at center, ${theme.palette.color}, 1px, transparent 0)`,
+          backgroundSize: "1.35rem 1.35rem",
+          backgroundPosition: "0 0, 0.675rem 0.675rem",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%)",
+          zIndex: 0,
+        },
       }}
     >
       <Container
@@ -28,6 +45,8 @@ const Footer = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          position: "relative",
+          zIndex: "1",
         }}
       >
         <Typography variant="body2">
@@ -36,7 +55,7 @@ const Footer = () => {
             href="/"
             sx={{
               textDecoration: "none",
-              color: { "&:hover": { color: "#FE5959" } },
+              color: { "&:hover": { color: theme.palette.color } },
             }}
           >
             ✮ leidorf
@@ -52,7 +71,7 @@ const Footer = () => {
             target="_blank"
             sx={{
               textDecoration: "none",
-              color: { "&:hover": { color: "#FE5959" } },
+              color: { "&:hover": { color: theme.palette.color } },
             }}
           >
             github
