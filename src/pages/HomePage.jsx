@@ -1,6 +1,11 @@
 import { useTheme } from "@emotion/react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import ASCIIText from "../components/ASCIIText";
+import Box from "@mui/material/Box";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "@mui/material/Link";
+import { Link as RouterLink } from "react-router-dom";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -8,13 +13,41 @@ const HomePage = () => {
     <Container
       sx={{
         border: `1px solid ${theme.palette.color}`,
-        borderRadius: "1rem",
         padding: "2rem",
       }}
     >
-      <Typography variant="h1" fontSize={64}>
-        /
-      </Typography>
+      <Breadcrumbs
+        sx={{
+          color: theme.palette.text.primary,
+          fontSize: 64,
+        }}
+      >
+        <Link
+          component={RouterLink}
+          color="inherit"
+          underline="hover"
+          to="/"
+          sx={{
+            ":hover": { color: theme.palette.color },
+          }}
+        >
+          home
+        </Link>
+      </Breadcrumbs>
+
+      <Box
+        sx={{
+          position: "relative",
+          height: "16rem",
+          py: "-2rem",
+        }}
+      >
+        <ASCIIText
+          text="leidorf"
+          enableWaves={false}
+          textColor={theme.palette.text.primary}
+        />
+      </Box>
       <Typography variant="body1">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

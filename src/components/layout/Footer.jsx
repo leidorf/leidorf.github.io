@@ -11,11 +11,9 @@ const Footer = () => {
       sx={{
         borderTop: `1px solid ${theme.palette.color}`,
         borderBottom: "0",
-        borderRadius: "1rem 1rem 0 0",
         boxShadow: "none",
         padding: "2rem",
         paddingBottom: "4rem",
-        marginTop: "2rem",
         position: "relative",
         backgroundColor: theme.palette.background.default,
 
@@ -58,7 +56,7 @@ const Footer = () => {
               color: { "&:hover": { color: theme.palette.color } },
             }}
           >
-            ✮ leidorf
+            leidorf
           </Link>
           <br />
           {"copyleft 🄯 "}

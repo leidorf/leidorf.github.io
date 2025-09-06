@@ -2,28 +2,22 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-
 const Header = ({ light, onToggleTheme }) => {
   const theme = useTheme();
 
   return (
-    <AppBar
-      position="static"
-      className="halftone"
+    <Box
       sx={{
-        borderBottom: `1px solid ${theme.palette.color} `,
-        borderRadius: "0 0 1rem 1rem",
-        boxShadow: "none",
-        padding: "0.5rem",
-        marginBottom: "2rem",
-
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        border: `1px solid ${theme.palette.color}`,
         backgroundImage: `radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0),
        radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0)`,
         backgroundSize: "1.35rem 1.35rem",
@@ -31,34 +25,33 @@ const Header = ({ light, onToggleTheme }) => {
         backgroundColor: theme.palette.background.default,
       }}
     >
-      <Toolbar
+      <AppBar
+        position="static"
         sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignContent: "center",
+          display: "inline-flex",
+          width: "auto",
+          borderLeft: `1px solid ${theme.palette.color}`,
+          borderRight: `1px solid ${theme.palette.color}`,
+          boxShadow: "none",
+          backgroundColor: theme.palette.background.default,
         }}
       >
-        <Typography variant="h4">
-          <Link
-            component={RouterLink}
-            to="/"
-            sx={{
-              textDecoration: "none",
-              color: theme.palette.text.primary,
-              "&:hover": {
-                color: theme.palette.color,
-              },
-            }}
-          >
-            ✮ leidorf
-          </Link>
-        </Typography>{" "}
-        <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <Typography variant="h5">
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "2.5rem",
+          }}
+        >
+          {["home", "works", "about"].map((item) => (
             <Link
+              key={item}
               component={RouterLink}
-              to="/works"
+              to={`/${item === "home" ? "" : item}`}
               sx={{
+                fontSize: "1.5rem",
+                lineHeight: "1",
                 textDecoration: "none",
                 color: theme.palette.text.primary,
                 "&:hover": {
@@ -66,25 +59,10 @@ const Header = ({ light, onToggleTheme }) => {
                 },
               }}
             >
-              works
+              {item}
             </Link>
-          </Typography>
+          ))}
 
-          <Typography variant="h5">
-            <Link
-              component={RouterLink}
-              to="/about"
-              sx={{
-                textDecoration: "none",
-                color: theme.palette.text.primary,
-                "&:hover": {
-                  color: theme.palette.color,
-                },
-              }}
-            >
-              about
-            </Link>
-          </Typography>
           <Button
             variant="outlined"
             onClick={onToggleTheme}
@@ -101,9 +79,9 @@ const Header = ({ light, onToggleTheme }) => {
           >
             {light ? <DarkModeIcon /> : <LightModeIcon />}
           </Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 

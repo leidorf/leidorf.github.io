@@ -9,7 +9,7 @@ const Layout = ({ light, onToggleTheme }) => {
     <>
       <PageHead />
       <Header light={light} onToggleTheme={onToggleTheme} />
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ my: 4 }}>
         <Outlet />
       </Container>
       <Footer />

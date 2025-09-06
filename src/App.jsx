@@ -10,7 +10,7 @@ const themeLight = createTheme({
       default: "#f2f2f2",
     },
     text: {
-      primary: "#060608",
+      primary: "#2e2e2e",
     },
   },
 });
