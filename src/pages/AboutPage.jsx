@@ -1,12 +1,10 @@
 import { useTheme } from "@emotion/react";
 import Box from "@mui/material/Box";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
 
 const AboutPage = () => {
   const theme = useTheme();
@@ -15,34 +13,13 @@ const AboutPage = () => {
   return (
     <Container
       sx={{
-        border: `1px solid ${theme.palette.color} `,
-        padding: "2rem",
+        py: 2,
+        border: `1px solid ${theme.palette.color}`,
       }}
     >
-      <Breadcrumbs sx={{ color: theme.palette.text.primary, fontSize: 64 }}>
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to="/"
-          sx={{
-            ":hover": { color: theme.palette.color },
-          }}
-        >
-          home
-        </Link>
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to="/about"
-          sx={{
-            ":hover": { color: theme.palette.color },
-          }}
-        >
-          about
-        </Link>
-      </Breadcrumbs>
+      <Typography sx={{ color: theme.palette.text.primary, fontSize: 64 }}>
+        about
+      </Typography>
       <Box
         sx={{
           display: "flex",

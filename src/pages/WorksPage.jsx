@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@emotion/react";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { Link as RouterLink } from "react-router-dom";
@@ -87,44 +86,22 @@ const WorksPage = () => {
     <Container
       disableGutters
       sx={{
-        border: `1px solid ${theme.palette.color}`,
-        py: 2,
+        border: `1px solid ${theme.palette.color}`
       }}
     >
-      <Breadcrumbs
+      <Typography
         sx={{ color: theme.palette.text.primary, fontSize: 64, pt: 2, px: 3 }}
       >
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to="/"
-          sx={{
-            ":hover": { color: theme.palette.color },
-          }}
-        >
-          home
-        </Link>
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to="/works"
-          sx={{
-            ":hover": { color: theme.palette.color },
-          }}
-        >
-          works
-        </Link>
-      </Breadcrumbs>
+        works
+      </Typography>
 
       {Object.keys(groupedWorks).map((category) => (
         <Box key={category}>
           <Typography
             variant="h3"
             sx={{
-              py:2,
-              px:3,
+              py: 2,
+              px: 3,
               borderTop: `1px solid ${theme.palette.color}`,
               borderBottom: `1px solid ${theme.palette.color}`,
               backgroundImage: `radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0),
@@ -145,6 +122,7 @@ const WorksPage = () => {
                   color="inherit"
                   to={`/work/${work.id}`}
                   sx={{
+                    fontSize: 18,
                     textDecoration: "none",
                     "&:hover": {
                       color: theme.palette.color,

@@ -8,6 +8,7 @@ import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 const WorkPage = () => {
   const [work, setWork] = useState(null);
@@ -82,23 +83,16 @@ const WorkPage = () => {
       disableGutters
       sx={{
         border: `1px solid ${theme.palette.color}`,
-        py: 2,
       }}
     >
       <Breadcrumbs
-        sx={{ color: theme.palette.text.primary, fontSize: 64, pt: 2, px: 3 }}
+        sx={{
+          color: theme.palette.text.primary,
+          fontSize: { xs: 36, md: 48, lg: 64 },
+          pt: 2,
+          px: 3,
+        }}
       >
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to="/"
-          sx={{
-            ":hover": { color: theme.palette.color },
-          }}
-        >
-          home
-        </Link>
         <Link
           component={RouterLink}
           color="inherit"
@@ -123,8 +117,10 @@ const WorkPage = () => {
         </Link>
       </Breadcrumbs>
 
+      <Divider sx={{ bgcolor: theme.palette.color }} />
+
       {work.category === "poem" ? (
-        <Box sx={{ py: 2, px: 3 }}>
+        <Box sx={{ pb: 2, px: 3 }}>
           <Typography
             sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
           >
@@ -136,7 +132,7 @@ const WorkPage = () => {
           <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
         </Box>
       ) : work.category === "script" ? (
-        <Box sx={{ py: 2, px: 3 }}>
+        <Box sx={{ pb: 2, px: 3 }}>
           <Typography
             sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
           >
@@ -168,7 +164,7 @@ const WorkPage = () => {
           <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
         </Box>
       ) : (
-        <Box sx={{ py: 2 }}>
+        <Box sx={{ pb: 2 }}>
           <Typography
             sx={{
               my: 2,
@@ -212,14 +208,14 @@ const WorkPage = () => {
               sx={{
                 height: 640,
                 width: "auto",
-                maxHeight: { xs: 160, sm: 320, md: 480, lg: 640 },
+                maxHeight: { xs: 180, sm: 300, md: 450, lg: 640 },
               }}
               alt="github_profile"
               src={work.image}
               onLoad={() => setLoading(false)}
             />
           </Box>
-          <Typography sx={{ mt: 4, px: 3 }}>- {work.author}</Typography>
+          <Typography sx={{ mt: 2, px: 3 }}>- {work.author}</Typography>
         </Box>
       )}
       <Typography></Typography>
