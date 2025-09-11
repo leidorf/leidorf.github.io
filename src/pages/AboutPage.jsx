@@ -17,7 +17,14 @@ const AboutPage = () => {
         border: `1px solid ${theme.palette.color}`,
       }}
     >
-      <Typography sx={{ color: theme.palette.text.primary, fontSize: 64 }}>
+      <Typography
+        component={"h1"}
+        sx={{
+          color: theme.palette.text.primary,
+          fontSize: 64,
+          fontWeight: "bold",
+        }}
+      >
         about
       </Typography>
       <Box
@@ -47,12 +54,8 @@ const AboutPage = () => {
           href="https://github.com/leidorf"
           target="_blank"
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             opacity: imageLoaded ? 1 : 0,
             transition: "opacity 0.3s ease-in-out",
-            width: "100%",
           }}
         >
           <Box
@@ -75,8 +78,9 @@ const AboutPage = () => {
         ago. but i forgot it over time. now its only purpose is to represent my
         online persona. basically, leidorf is me.
         <br />i have done a variety of creative things over the years. when i
-        got bored i moved on to another medium. i studied software engineering
-        at a random university.
+        got bored i moved on to another medium. i love foss, web development &
+        security, anatolia, most forms of art, the concept of the internet. i
+        studied software engineering at a random university.
         <br />
         you can check out my twitter account for more pixel arts. you might have
         to scroll down a bit.

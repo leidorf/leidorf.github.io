@@ -7,7 +7,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 
-const AllWorks = () => {
+const AllPixelArts = () => {
   const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadedImages, setLoadedImages] = useState({});
@@ -35,7 +35,7 @@ const AllWorks = () => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch("/data/homeworks.json");
+        const response = await fetch("/data/pixel-arts.json");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -46,10 +46,8 @@ const AllWorks = () => {
         setWorks(shuffledArray);
         setLoading(false);
       } catch (error) {
-        console.error("Veri yüklenirken hata oluştu:", error);
-        setError(
-          "Çalışmalar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
-        );
+        console.error("there have been an error:", error);
+        setError("works couldn't fetched. please try again later.");
         setLoading(false);
       }
     };
@@ -94,6 +92,7 @@ const AllWorks = () => {
               <Grid item xs={12} sm={6} md={4} key={work.id}>
                 <Box
                   sx={{
+                    p: 1,
                     position: "relative",
                     width: "100%",
                     height: 240,
@@ -170,4 +169,4 @@ const AllWorks = () => {
   );
 };
 
-export default AllWorks;
+export default AllPixelArts;

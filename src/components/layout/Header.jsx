@@ -44,7 +44,7 @@ const Header = ({ light, onToggleTheme }) => {
             gap: "2.5rem",
           }}
         >
-          {["home", "works", "about"].map((item) => (
+          {["home", "projects", "works", "about"].map((item) => (
             <Link
               key={item}
               component={RouterLink}

@@ -6,9 +6,10 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import Poem from "../components/PoemWork";
+import Script from "../components/ScriptWork";
+import ImageWork from "../components/ImageWork";
 
 const WorkPage = () => {
   const [work, setWork] = useState(null);
@@ -60,7 +61,7 @@ const WorkPage = () => {
           height: "50vh",
         }}
       >
-        <CircularProgress color={theme.palette.color} />
+        <CircularProgress sx={{ color: theme.palette.color }} />
       </Container>
     );
   }
@@ -91,6 +92,7 @@ const WorkPage = () => {
           fontSize: { xs: 36, md: 48, lg: 64 },
           pt: 2,
           px: 3,
+          fontWeight: "bold",
         }}
       >
         <Link
@@ -99,124 +101,31 @@ const WorkPage = () => {
           underline="hover"
           to="/works"
           sx={{
+            fontWeight: "bold",
             ":hover": { color: theme.palette.color },
           }}
         >
           work
         </Link>
-        <Link
-          component={RouterLink}
-          color="inherit"
-          underline="hover"
-          to={`/work/${workId}`}
+        <Typography
+          component={"h1"}
           sx={{
-            ":hover": { color: theme.palette.color },
+            fontWeight: "bold",
+            fontSize: 64,
           }}
         >
           {work?.title || "Loading..."}
-        </Link>
+        </Typography>
       </Breadcrumbs>
 
       <Divider sx={{ bgcolor: theme.palette.color }} />
 
       {work.category === "poem" ? (
-        <Box sx={{ pb: 2, px: 3 }}>
-          <Typography
-            sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
-          >
-            {work.title}
-          </Typography>
-          <Typography sx={{ whiteSpace: "pre-line" }}>
-            {work.content}
-          </Typography>
-          <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
-        </Box>
+        <Poem work={work} />
       ) : work.category === "script" ? (
-        <Box sx={{ pb: 2, px: 3 }}>
-          <Typography
-            sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
-          >
-            {work.title}
-          </Typography>
-          {work.description && <Typography>{work.description}</Typography>}
-          <Link
-            component={RouterLink}
-            to={work.content || "/404"}
-            target="_blank"
-            sx={{
-              color: "inherit",
-              textDecoration: "none",
-              ":hover": { color: theme.palette.color },
-            }}
-          >
-            <Button
-              variant="outlined"
-              sx={{
-                color: theme.palette.color,
-                borderColor: theme.palette.color,
-                textTransform: "none",
-                my: 2,
-              }}
-            >
-              synopsis
-            </Button>
-          </Link>
-          <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
-        </Box>
+        <Script work={work} />
       ) : (
-        <Box sx={{ pb: 2 }}>
-          <Typography
-            sx={{
-              my: 2,
-              px: 3,
-              color: theme.palette.color,
-              fontSize: "1.5rem",
-            }}
-          >
-            {work.title}
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              py: 4,
-              mb: 2,
-              borderTop: `1px solid ${theme.palette.color}`,
-              borderBottom: `1px solid ${theme.palette.color}`,
-              backgroundImage: `radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0),
-       radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0)`,
-              backgroundSize: "1.35rem 1.35rem",
-              backgroundPosition: "0 0, 0.675rem 0.675rem",
-              backgroundColor: theme.palette.background.default,
-            }}
-          >
-            {loading && (
-              <CircularProgress
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  color: theme.palette.color,
-                }}
-              />
-            )}
-
-            <Box
-              component="img"
-              sx={{
-                height: 640,
-                width: "auto",
-                maxHeight: { xs: 180, sm: 300, md: 450, lg: 640 },
-              }}
-              alt="github_profile"
-              src={work.image}
-              onLoad={() => setLoading(false)}
-            />
-          </Box>
-          <Typography sx={{ mt: 2, px: 3 }}>- {work.author}</Typography>
-        </Box>
+        <ImageWork work={work} />
       )}
       <Typography></Typography>
     </Container>

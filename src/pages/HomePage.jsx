@@ -14,7 +14,14 @@ const HomePage = () => {
         border: `1px solid ${theme.palette.color}`,
       }}
     >
-      <Typography sx={{ color: theme.palette.text.primary, fontSize: 64 }}>
+      <Typography
+        component={"h1"}
+        sx={{
+          color: theme.palette.text.primary,
+          fontSize: 64,
+          fontWeight: "bold",
+        }}
+      >
         home
       </Typography>
 
