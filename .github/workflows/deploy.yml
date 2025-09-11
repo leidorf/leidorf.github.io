@@ -17,14 +17,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+    - name: Setup Node.js 24
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '24'
         cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+    - name: Install dependencies (use npm install instead of ci)
+      run: npm install
 
     - name: Build
       run: npm run build
