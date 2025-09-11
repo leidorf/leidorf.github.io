@@ -1,7 +1,7 @@
 {
   "name": "falan",
   "version": "0.1.0",
-  "homepage": "https://leidorf.github.io/leidorf.github.io",
+  "homepage": "https://leidorf.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
