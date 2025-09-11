@@ -15,13 +15,15 @@ const AboutPage = () => {
       sx={{
         py: 2,
         border: `1px solid ${theme.palette.color}`,
+        borderRadius: "0.5rem",
+        minWidth: "20rem",
       }}
     >
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: 64,
+          fontSize: { xs: 48, md: 64 },
           fontWeight: "bold",
         }}
       >
@@ -61,10 +63,11 @@ const AboutPage = () => {
           <Box
             component="img"
             sx={{
-              height: 320,
-              width: 320,
-              maxHeight: { xs: 160, md: 320, lg: 640 },
-              maxWidth: { xs: 160, md: 320, lg: 640 },
+              height: "auto",
+              width: "auto",
+              maxHeight: { xs: 280, sm: 300, md: 320, lg: 320 },
+              maxWidth: "auto",
+              borderRadius: "0.25rem",
             }}
             alt="github_profile"
             src="https://avatars.githubusercontent.com/u/93585259?v=4"

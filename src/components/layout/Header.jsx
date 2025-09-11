@@ -28,12 +28,15 @@ const Header = ({ light, onToggleTheme }) => {
       <AppBar
         position="static"
         sx={{
-          display: "inline-flex",
+          display: "flex",
           width: "auto",
-          borderLeft: `1px solid ${theme.palette.color}`,
-          borderRight: `1px solid ${theme.palette.color}`,
+          borderLeft: { sm: `1px solid ${theme.palette.color}` },
+          borderRight: { sm: `1px solid ${theme.palette.color}` },
+          backgroundColor: {
+            xs: "transparent",
+            sm: theme.palette.background.default,
+          },
           boxShadow: "none",
-          backgroundColor: theme.palette.background.default,
         }}
       >
         <Toolbar
@@ -41,7 +44,7 @@ const Header = ({ light, onToggleTheme }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: "2.5rem",
+            gap: { xs: "1rem", sm: "2rem", md: "2.5rem" },
           }}
         >
           {["home", "projects", "works", "about"].map((item) => (
@@ -50,7 +53,7 @@ const Header = ({ light, onToggleTheme }) => {
               component={RouterLink}
               to={`/${item === "home" ? "" : item}`}
               sx={{
-                fontSize: "1.5rem",
+                fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" },
                 lineHeight: "1",
                 textDecoration: "none",
                 color: theme.palette.text.primary,

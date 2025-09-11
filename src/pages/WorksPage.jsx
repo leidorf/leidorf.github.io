@@ -66,6 +66,8 @@ const WorksPage = () => {
           padding: "2rem",
           display: "flex",
           justifyContent: "center",
+          borderRadius: "0.5rem",
+          minWidth: "20rem",
         }}
       >
         <CircularProgress
@@ -83,6 +85,8 @@ const WorksPage = () => {
         sx={{
           border: `1px solid ${theme.palette.color}`,
           padding: "2rem",
+          borderRadius: "0.5rem",
+          minWidth: "20rem",
         }}
       >
         <Typography color="error">{error}</Typography>
@@ -95,13 +99,15 @@ const WorksPage = () => {
       disableGutters
       sx={{
         border: `1px solid ${theme.palette.color}`,
+        borderRadius: "0.5rem",
+        minWidth: "20rem",
       }}
     >
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: 64,
+          fontSize: { xs: 48, md: 64 },
           fontWeight: "bold",
           pt: 2,
           px: 3,

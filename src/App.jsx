@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const themeLight = createTheme({
   palette: {
-    color:"#D94848",
+    color: "#D94848",
     background: {
       default: "#f2f2f2",
     },
@@ -28,7 +28,10 @@ const themeDark = createTheme({
 });
 
 function App() {
-  const [light, setLight] = useState(false);
+  const [light, setLight] = useState(
+    window.matchMedia &&
+      !window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
 
   const toggleTheme = () => {
     setLight((prev) => !prev);

@@ -12,13 +12,15 @@ const HomePage = () => {
       sx={{
         py: 2,
         border: `1px solid ${theme.palette.color}`,
+        borderRadius: "0.5rem",
+        minWidth: "20rem",
       }}
     >
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: 64,
+          fontSize: { xs: 48, md: 64 },
           fontWeight: "bold",
         }}
       >

@@ -54,6 +54,7 @@ const ImageWork = ({ work }) => {
             height: 640,
             width: "auto",
             maxHeight: { xs: 180, sm: 300, md: 450, lg: 640 },
+            borderRadius: "0.25rem",
           }}
           alt="github_profile"
           src={work.image}

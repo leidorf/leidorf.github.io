@@ -54,6 +54,8 @@ const WorkPage = () => {
       <Container
         sx={{
           border: `1px solid ${theme.palette.color}`,
+          borderRadius: "0.5rem",
+          minWidth: "20rem",
           padding: "2rem",
           display: "flex",
           justifyContent: "center",
@@ -71,6 +73,8 @@ const WorkPage = () => {
       <Container
         sx={{
           border: `1px solid ${theme.palette.color}`,
+          borderRadius: "0.5rem",
+          minWidth: "20rem",
           padding: "2rem",
         }}
       >
@@ -84,6 +88,8 @@ const WorkPage = () => {
       disableGutters
       sx={{
         border: `1px solid ${theme.palette.color}`,
+        borderRadius: "0.5rem",
+        minWidth: "20rem",
       }}
     >
       <Breadcrumbs
@@ -111,7 +117,7 @@ const WorkPage = () => {
           component={"h1"}
           sx={{
             fontWeight: "bold",
-            fontSize: 64,
+            fontSize: { xs: 36, md: 48, lg: 64 },
           }}
         >
           {work?.title || "Loading..."}

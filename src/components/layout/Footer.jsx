@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Footer = () => {
   const theme = useTheme();
@@ -72,7 +73,7 @@ const Footer = () => {
               color: { "&:hover": { color: theme.palette.color } },
             }}
           >
-            github
+            <GitHubIcon />
           </Link>
         </Typography>
       </Container>

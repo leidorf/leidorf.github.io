@@ -11,12 +11,14 @@ const NotFound = () => {
       sx={{
         py: 2,
         border: `1px solid ${theme.palette.color}`,
+        borderRadius: "0.5rem",
+        minWidth: "20rem",
         textAlign: "center",
       }}
     >
       <Typography
         component={"h1"}
-        sx={{ color: theme.palette.color, fontSize: 128 }}
+        sx={{ color: theme.palette.color, fontSize: { xs: 64, md: 128 } }}
       >
         404 :/
       </Typography>
