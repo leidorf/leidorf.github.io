@@ -1,0 +1,76 @@
+{
+  "projects": [
+    {
+      "id": "16a73f6f-221e-40ae-b311-41a8778139c1",
+      "title": "leidorf.github.io",
+      "description": "personal website that you are reading from it. i change it completely if i dont like it. this is 3rd version of the website. used react.js, material ui",
+      "date": "11.2023 - recent",
+      "link": "https://leidorf.github.io/",
+      "github_link": "https://github.com/leidorf/leidorf.github.io"
+    },
+    {
+      "id": "5e8a1900-9771-4fc0-9887-01be7e5767ed",
+      "title": "SynthiMark Website",
+      "description": "contributed to the frontend development of a subscription-based service using next.js and implemented internationalization (i18n).",
+      "date": "12.2023 – 10.2024",
+      "link": "",
+      "github_link": ""
+    },
+    {
+      "id": "56fe9b62-7eb6-4a28-8dd8-67754f7ab5dc",
+      "title": "web interface for robots",
+      "description": "i developed web interface with next.js & mysql for controlling ros based agvs.",
+      "date": "06.2024 - 08.2024",
+      "link": "",
+      "github_link": "https://github.com/leidorf/onderlift"
+    },
+    {
+      "id": "b176267e-2451-4a2a-8789-f5702b13986c",
+      "title": "leidorf.space",
+      "description": "dynamic website for publishing my works. used go, next.js, tailwindcss, postgresql, docker.",
+      "date": "11.2024 - 12.2024",
+      "link": "",
+      "github_link": "https://github.com/leidorf/leidorf.space"
+    },
+    {
+      "id": "bb1053f7-3a2a-4cf3-b172-d3538b26031f",
+      "title": "Cyber Heroes",
+      "description": "gamified quiz platform to educate children on internet safety. used next.js, tailwindcss, sqlite",
+      "date": "11.2024 – 12.2024",
+      "link": "https://cyber-heroes.vercel.app/",
+      "github_link": "https://github.com/leidorf/cyber-heroes"
+    },
+    {
+      "id": "72ff65dd-28f9-4631-a49b-5d5fd0d2bf66",
+      "title": "LeftClick Sec",
+      "description": "phishing detection website and browser extensions with ml that achieved 86% accuracy. used python, next.js, tailwind, mysql",
+      "date": "02.2024 – 01.2025",
+      "link": "https://leftclicksec.org",
+      "github_link": "https://github.com/leidorf/leftclick-sec"
+    },
+    {
+      "id": "dadd8d1c-3ac6-4ffa-85ea-0ce60971259b",
+      "title": "What Could Be the Worst?",
+      "description": "a website gives sarcastic answers to your symptoms. i built for fun and learn angular.js",
+      "date": "01.2025 - 01.2025",
+      "link": "https://what-could-be-the-worst.vercel.app/",
+      "github_link": "https://github.com/leidorf/what-could-be-the-worst"
+    },
+    {
+      "id": "6db5d819-4d81-4370-a9a2-b0b77d7d624d",
+      "title": "taboo",
+      "description": "a multi platform word-guessing game. using react.js and react native for web and mobile. i am still developing",
+      "date": "04.2025 - recent",
+      "link": "",
+      "github_link": ""
+    },
+    {
+      "id": "32bf0f36-e8dd-4f29-a402-fc4f9de1c878",
+      "title": "CTF Web Platform",
+      "description": "contributed to the frontend development of a ctf platform. used react.js, tailwindcss.",
+      "date": "07.2025 - 08.2025",
+      "link": "",
+      "github_link": ""
+    }
+  ]
+}
