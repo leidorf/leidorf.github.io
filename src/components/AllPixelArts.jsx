@@ -5,55 +5,34 @@ import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
 const AllPixelArts = () => {
-  const [works, setWorks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadedImages, setLoadedImages] = useState({});
-  const [error, setError] = useState(null);
   const theme = useTheme();
+  const {
+    data: worksData,
+    loading,
+    error,
+  } = useFetch("/data/pixel-arts.json", (data) => data.works || []);
+  const [loadedImages, setLoadedImages] = useState({});
 
   function shuffle(array) {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = shuffledArray[i];
-      shuffledArray[i] = shuffledArray[j];
-      shuffledArray[j] = temp;
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return shuffledArray;
+    return arr;
   }
 
-  const handleImageLoad = (id) => {
-    setLoadedImages((prev) => ({ ...prev, [id]: true }));
-  };
+  const works = useMemo(
+    () => (worksData ? shuffle(worksData) : []),
+    [worksData]
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch("/data/pixel-arts.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        const worksArray = data.works || [];
-        const shuffledArray = shuffle(worksArray);
-
-        setWorks(shuffledArray);
-        setLoading(false);
-      } catch (error) {
-        console.error("there have been an error:", error);
-        setError("works couldn't fetched. please try again later.");
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const handleImageLoad = (id) =>
+    setLoadedImages((s) => ({ ...s, [id]: true }));
 
   return (
     <Box
@@ -92,10 +71,10 @@ const AllPixelArts = () => {
               <Grid item xs={12} sm={6} md={4} key={work.id}>
                 <Box
                   sx={{
-                    p: 1,
+                    p: { xs: 0.5, sm: 1 },
                     position: "relative",
                     width: "100%",
-                    height: 240,
+                    height: { xs: 180, md: 240 },
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -146,6 +125,7 @@ const AllPixelArts = () => {
                           sx={{
                             width: "100%",
                             height: "100%",
+                            borderRadius: "0.25rem",
                             objectFit: "cover",
                             transition:
                               "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",

@@ -1,29 +1,22 @@
 import { useTheme } from "@emotion/react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import AppContainer from "../components/AppContainer";
 
 const AboutPage = () => {
   const theme = useTheme();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <Container
-      sx={{
-        py: 2,
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer sx={{ py: 2 }}>
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: { xs: 48, md: 64 },
+          fontSize: { xs: 48, sm: 64, md: 96 },
           fontWeight: "bold",
         }}
       >
@@ -76,7 +69,13 @@ const AboutPage = () => {
         </Link>
       </Box>
 
-      <Typography variant="body1">
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: { sm: 18, md: 24 },
+          letterSpacing: { xs: 0, md: -1 },
+        }}
+      >
         leidorf does not mean anything. i knew the meaning of the word years
         ago. but i forgot it over time. now its only purpose is to represent my
         online persona. basically, leidorf is me.
@@ -88,7 +87,7 @@ const AboutPage = () => {
         you can check out my twitter account for more pixel arts. you might have
         to scroll down a bit.
       </Typography>
-    </Container>
+    </AppContainer>
   );
 };
 

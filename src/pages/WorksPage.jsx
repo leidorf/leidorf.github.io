@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { useTheme } from "@emotion/react";
-import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { Link as RouterLink } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,6 +11,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ImageIcon from "@mui/icons-material/Image";
 import ArticleIcon from "@mui/icons-material/Article";
 import ListItemText from "@mui/material/ListItemText";
+import { useFetch } from "../hooks/useFetch";
+import AppContainer from "../components/AppContainer";
 
 const groupByCategory = (works) => {
   return works.reduce((grouped, work) => {
@@ -27,87 +28,47 @@ const groupByCategory = (works) => {
 };
 
 const WorksPage = () => {
-  const [groupedWorks, setGroupedWorks] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const theme = useTheme();
+  const {
+    data: worksData,
+    loading,
+    error,
+  } = useFetch("/data/works.json", (data) => data.works || []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch("/data/works.json");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        const worksArray = data.works || [];
-
-        setGroupedWorks(groupByCategory(worksArray));
-        setLoading(false);
-      } catch (error) {
-        console.error("there have been an error:", error);
-        setError("works couldn't fetched. please try again later.");
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const groupedWorks = useMemo(() => {
+    if (!worksData) return {};
+    return groupByCategory(worksData);
+  }, [worksData]);
 
   if (loading) {
     return (
-      <Container
-        sx={{
-          border: `1px solid ${theme.palette.color}`,
-          padding: "2rem",
-          display: "flex",
-          justifyContent: "center",
-          borderRadius: "0.5rem",
-          minWidth: "20rem",
-        }}
+      <AppContainer
+        sx={{ padding: "2rem", display: "flex", justifyContent: "center" }}
       >
         <CircularProgress
           sx={{
             color: theme.palette.color,
           }}
         />
-      </Container>
+      </AppContainer>
     );
   }
 
   if (error) {
     return (
-      <Container
-        sx={{
-          border: `1px solid ${theme.palette.color}`,
-          padding: "2rem",
-          borderRadius: "0.5rem",
-          minWidth: "20rem",
-        }}
-      >
+      <AppContainer sx={{ p: 2 }}>
         <Typography color="error">{error}</Typography>
-      </Container>
+      </AppContainer>
     );
   }
 
   return (
-    <Container
-      disableGutters
-      sx={{
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer disableGutters>
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: { xs: 48, md: 64 },
+          fontSize: { xs: 48, sm: 64, md: 96 },
           fontWeight: "bold",
           pt: 2,
           px: 3,
@@ -123,6 +84,9 @@ const WorksPage = () => {
             sx={{
               py: 2,
               px: 3,
+
+              fontSize: { xs: 36, sm: 48, md: 64 },
+              letterSpacing: { xs: 0, sm: -1 },
               borderTop: `1px solid ${theme.palette.color}`,
               borderBottom: `1px solid ${theme.palette.color}`,
               backgroundImage: `radial-gradient(circle at center, ${theme.palette.color} 1px, transparent 0),
@@ -137,7 +101,6 @@ const WorksPage = () => {
               category
             ) : (
               <Link
-                variant="v3"
                 component={RouterLink}
                 to={"/pixel-arts"}
                 sx={{
@@ -182,14 +145,22 @@ const WorksPage = () => {
                       <ArticleIcon />
                     )}
                   </ListItemIcon>
-                  <ListItemText>{work.title}</ListItemText>
+                  <ListItemText
+                    disableTypography
+                    sx={{
+                      fontSize: { xs: 18, sm: 24 },
+                      letterSpacing: { xs: 0, sm: -1 },
+                    }}
+                  >
+                    {work.title}
+                  </ListItemText>
                 </Link>
               </ListItem>
             ))}
           </List>
         </Box>
       ))}
-    </Container>
+    </AppContainer>
   );
 };
 

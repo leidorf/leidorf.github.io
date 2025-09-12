@@ -10,11 +10,25 @@ const ScriptWork = ({ work }) => {
   return (
     <Box sx={{ pb: 2, px: 3 }}>
       <Typography
-        sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
+        sx={{
+          my: 2,
+          color: theme.palette.color,
+          fontSize: { xs: 24, md: 36, lg: 48 },
+          letterSpacing: { xs: 0, md: -1 },
+        }}
       >
         {work.title}
       </Typography>
-      {work.description && <Typography>{work.description}</Typography>}
+      {work.description && (
+        <Typography
+          sx={{
+            fontSize: { sm: 18, md: 24 },
+            letterSpacing: { xs: 0, md: -1 },
+          }}
+        >
+          {work.description}
+        </Typography>
+      )}
       <Link
         component={RouterLink}
         to={work.content || "/404"}
@@ -28,16 +42,27 @@ const ScriptWork = ({ work }) => {
         <Button
           variant="outlined"
           sx={{
+            my:2,
             color: theme.palette.color,
             borderColor: theme.palette.color,
             textTransform: "none",
-            my: 2,
+            bgcolor: theme.palette.background.default,
+            transition: "all 0.2s ease-in-out",
+            "&:hover": {
+              backgroundColor: theme.palette.background.default,
+              color: theme.palette.text.primary,
+              borderColor: theme.palette.text.primary,
+            },
           }}
         >
           synopsis
         </Button>
       </Link>
-      <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
+      <Typography
+        sx={{ mt: 2, fontSize: { sm: 24 }, letterSpacing: { xs: 0 } }}
+      >
+        - {work.author}
+      </Typography>
     </Box>
   );
 };

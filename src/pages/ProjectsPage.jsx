@@ -1,7 +1,6 @@
 import { useTheme } from "@emotion/react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -14,48 +13,26 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
+import { useFetch } from "../hooks/useFetch";
+import AppContainer from "../components/AppContainer";
 
 const ProjectsPage = () => {
   const theme = useTheme();
-  const [projects, setProjects] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const {
+    data: projectsData,
+    loading,
+    error,
+  } = useFetch("/data/projects.json", (data) =>
+    (data.projects || []).reverse()
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch("/data/projects.json");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        const projectsArray = data.projects || [];
-
-        setProjects(projectsArray.reverse());
-        setLoading(false);
-      } catch (error) {
-        console.error("there have been an error:", error);
-        setError("works couldn't fetched. please try again later.");
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (projectsData) setProjects(projectsData);
+  }, [projectsData]);
 
   return (
-    <Container
-      disableGutters
-      sx={{
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer disableGutters>
       <Box
         sx={{
           py: 2,
@@ -66,14 +43,19 @@ const ProjectsPage = () => {
           component={"h1"}
           sx={{
             color: theme.palette.text.primary,
-            fontSize: {xs:48, md:64},
+            fontSize: { xs: 48, sm: 64, md: 96 },
             fontWeight: "bold",
           }}
         >
           projects
         </Typography>
 
-        <Typography>
+        <Typography
+          sx={{
+            fontSize: { sm: 18, md: 24 },
+            letterSpacing: { xs: 0, md: -1 },
+          }}
+        >
           most projects that i published on github. you can check out my github
           account for more projects. if there is no github or website link, it's
           either because i am still developing the project or because i believe
@@ -84,13 +66,28 @@ const ProjectsPage = () => {
       <Divider sx={{ bgcolor: theme.palette.color }} />
 
       {loading ? (
-        <CircularProgress
+        <Box
           sx={{
-            color: theme.palette.color,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "20rem",
           }}
-        />
+        >
+          <CircularProgress
+            sx={{
+              color: theme.palette.color,
+            }}
+          />
+        </Box>
       ) : error ? (
-        <Typography color="error">{error}</Typography>
+        <Box
+          sx={{
+            minHeight: "20rem",
+          }}
+        >
+          <Typography color="error">{error}</Typography>
+        </Box>
       ) : (
         <Grid container spacing={4} sx={{ m: 2 }}>
           {projects.map((project) => (
@@ -125,6 +122,11 @@ const ProjectsPage = () => {
                   }}
                   slotProps={{
                     subheader: { color: theme.palette.text.primary },
+                    title: {
+                      fontSize: { md: 24 },
+                      letterSpacing: { xs: 0, md: -1 },
+                      fontWeight: 600,
+                    },
                   }}
                   title={project.title}
                   subheader={project.date}
@@ -186,7 +188,7 @@ const ProjectsPage = () => {
           ))}
         </Grid>
       )}
-    </Container>
+    </AppContainer>
   );
 };
 

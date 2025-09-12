@@ -15,7 +15,8 @@ const ImageWork = ({ work }) => {
           my: 2,
           px: 3,
           color: theme.palette.color,
-          fontSize: "1.5rem",
+          fontSize: { xs: 24, md: 36, lg: 48 },
+          letterSpacing: { xs: 0, md: -1 },
         }}
       >
         {work.title}
@@ -61,7 +62,16 @@ const ImageWork = ({ work }) => {
           onLoad={() => setLoading(false)}
         />
       </Box>
-      <Typography sx={{ mt: 2, px: 3 }}>- {work.author}</Typography>
+      <Typography
+        sx={{
+          mt: 2,
+          px: 3,
+          fontSize: { sm: 18, md: 24 },
+          letterSpacing: { xs: 0, md: -1 },
+        }}
+      >
+        - {work.author}
+      </Typography>
     </Box>
   );
 };

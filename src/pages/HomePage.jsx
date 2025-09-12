@@ -1,53 +1,53 @@
 import { useTheme } from "@emotion/react";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import ASCIIText from "../components/ASCIIText";
 import Box from "@mui/material/Box";
+import AppContainer from "../components/AppContainer";
 
 const HomePage = () => {
   const theme = useTheme();
 
   return (
-    <Container
-      sx={{
-        py: 2,
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer sx={{ py: 2 }}>
       <Typography
         component={"h1"}
         sx={{
           color: theme.palette.text.primary,
-          fontSize: { xs: 48, md: 64 },
+          fontSize: { xs: 48, sm: 64, md: 96 },
           fontWeight: "bold",
         }}
       >
         home
       </Typography>
 
-      <Box
+      <Typography
+        variant="body1"
         sx={{
-          position: "relative",
-          height: "16rem",
-          mt: "-3rem",
+            fontSize: { sm: 18, md: 24 },
+            letterSpacing: { xs: 0, md: -1 },
         }}
       >
-        <ASCIIText
-          text="leidorf"
-          enableWaves={false}
-          textColor={theme.palette.text.primary}
-        />
-      </Box>
-
-      <Typography variant="body1">i do various things.</Typography>
-
-      <Typography variant="body1">
-        "cool quote"
-        <br />- historically known figure
+        hi i am leidorf. i do various things like art, web dev & security.
       </Typography>
-    </Container>
+
+      <Box sx={{ textWrap: "nowrap", textAlign: "end", mt: 4 }}>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: { xs: 52, sm: 96, md: 140, lg: 160 },
+            fontWeight: 900,
+            letterSpacing: { xs: -6, sm: -12, md: -16 },
+            fontFamily: "sans-serif",
+          }}
+        >
+          "cool quote"
+        </Typography>
+        <Typography
+          sx={{ fontSize: { sm: 36, md: 48, lg: 64 }, mt: { md: -3, lg: -4 } }}
+        >
+          - historically known figure
+        </Typography>
+      </Box>
+    </AppContainer>
   );
 };
 

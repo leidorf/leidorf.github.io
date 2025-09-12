@@ -1,20 +1,13 @@
 import { useTheme } from "@emotion/react";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import AllPixelArts from "../components/AllPixelArts";
+import AppContainer from "../components/AppContainer";
 
 const PixelArtPage = () => {
   const theme = useTheme();
   return (
-    <Container
-      disableGutters
-      sx={{
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer disableGutters>
       <Box
         sx={{
           py: 2,
@@ -25,7 +18,7 @@ const PixelArtPage = () => {
           component={"h1"}
           sx={{
             color: theme.palette.text.primary,
-            fontSize: { xs: 48, md: 64 },
+          fontSize: { xs: 48, sm: 64, md: 96 },
             fontWeight: "bold",
           }}
         >
@@ -39,7 +32,7 @@ const PixelArtPage = () => {
       </Box>
 
       <AllPixelArts />
-    </Container>
+    </AppContainer>
   );
 };
 

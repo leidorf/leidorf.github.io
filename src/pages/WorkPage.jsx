@@ -1,61 +1,43 @@
 import { useTheme } from "@emotion/react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Poem from "../components/PoemWork";
 import Script from "../components/ScriptWork";
 import ImageWork from "../components/ImageWork";
+import { useFetch } from "../hooks/useFetch";
+import AppContainer from "../components/AppContainer";
 
 const WorkPage = () => {
-  const [work, setWork] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { workId } = useParams();
   const navigate = useNavigate();
   const theme = useTheme();
 
+  const {
+    data: worksData,
+    loading,
+    error,
+  } = useFetch("/data/works.json", (data) => data.works || []);
+
+  const work = useMemo(() => {
+    if (!worksData) return null;
+    return worksData.find((w) => String(w.id) === String(workId)) || null;
+  }, [worksData, workId]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch("/data/works.json");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        const foundWork = data.works.find((w) => w.id === workId);
-
-        if (foundWork) {
-          setWork(foundWork);
-        } else {
-          navigate("/404");
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("error occurred while fetching data:", error);
-        setError("error occurred while fetching data. please try again later");
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [workId, navigate]);
+    if (!loading && worksData && !work) {
+      navigate("/404", { replace: true });
+    }
+  }, [loading, worksData, work, navigate]);
 
   if (loading) {
     return (
-      <Container
+      <AppContainer
         sx={{
-          border: `1px solid ${theme.palette.color}`,
-          borderRadius: "0.5rem",
-          minWidth: "20rem",
           padding: "2rem",
           display: "flex",
           justifyContent: "center",
@@ -64,34 +46,24 @@ const WorkPage = () => {
         }}
       >
         <CircularProgress sx={{ color: theme.palette.color }} />
-      </Container>
+      </AppContainer>
     );
   }
 
   if (error) {
     return (
-      <Container
-        sx={{
-          border: `1px solid ${theme.palette.color}`,
-          borderRadius: "0.5rem",
-          minWidth: "20rem",
-          padding: "2rem",
-        }}
-      >
+      <AppContainer sx={{ p: 2 }}>
         <Typography color="error">{error}</Typography>
-      </Container>
+      </AppContainer>
     );
   }
 
+  if (!work) {
+    return null;
+  }
+
   return (
-    <Container
-      disableGutters
-      sx={{
-        border: `1px solid ${theme.palette.color}`,
-        borderRadius: "0.5rem",
-        minWidth: "20rem",
-      }}
-    >
+    <AppContainer disableGutters>
       <Breadcrumbs
         sx={{
           color: theme.palette.text.primary,
@@ -134,7 +106,7 @@ const WorkPage = () => {
         <ImageWork work={work} />
       )}
       <Typography></Typography>
-    </Container>
+    </AppContainer>
   );
 };
 

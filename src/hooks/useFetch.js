@@ -1,33 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-export const useFetch = (fetchFn) => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export function useFetch(url, transformFn) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const transformRef = useRef(transformFn);
   useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+    transformRef.current = transformFn;
+  }, [transformFn]);
 
-    const getData = async () => {
-      setIsLoading(true);
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
       try {
-        const result = await fetchFn(signal);
-        setData(result);
+        setLoading(true);
         setError(null);
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          const msg = err.message;
-          setError(msg);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      } finally {
-        setIsLoading(false);
+
+        const jsonData = await response.json();
+        const transformed = transformRef.current
+          ? transformRef.current(jsonData)
+          : jsonData;
+
+        if (isMounted) {
+          setData(transformed);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("fetch error:", err);
+        if (isMounted) {
+          setError("Error fetching data. Please try again later.");
+          setLoading(false);
+        }
       }
     };
-    getData();
 
-    return () => abortController.abort();
-  }, [fetchFn]);
+    fetchData();
 
-  return { data, isLoading, error };
-};
+    return () => {
+      isMounted = false;
+    };
+  }, [url]);
+
+  return { data, loading, error };
+}

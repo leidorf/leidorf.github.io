@@ -7,12 +7,33 @@ const PoemWork = ({ work }) => {
   return (
     <Box sx={{ pb: 2, px: 3 }}>
       <Typography
-        sx={{ my: 2, color: theme.palette.color, fontSize: "1.5rem" }}
+        sx={{
+          my: 2,
+          color: theme.palette.color,
+          fontSize: { xs: 24, md: 36, lg: 48 },
+          letterSpacing: { xs: 0, md: -1 },
+        }}
       >
         {work.title}
       </Typography>
-      <Typography sx={{ whiteSpace: "pre-line" }}>{work.content}</Typography>
-      <Typography sx={{ mt: 2 }}>- {work.author}</Typography>
+      <Typography
+        sx={{
+          whiteSpace: "pre-line",
+          fontSize: { md: 20 },
+          letterSpacing: { xs: 0, md: -1 },
+        }}
+      >
+        {work.content}
+      </Typography>
+      <Typography
+        sx={{
+          mt: 2,
+          fontSize: { sm: 24 },
+          letterSpacing: { xs: 0 },
+        }}
+      >
+        - {work.author}
+      </Typography>
     </Box>
   );
 };
