@@ -35,7 +35,7 @@ const HomePage = () => {
           sx={{
             fontSize: { xs: 52, sm: 96, md: 140, lg: 160 },
             fontWeight: 900,
-            letterSpacing: { xs: -6, sm: -12, md: -16 },
+            letterSpacing: { xs: -2, sm: -12, md: -16 },
             fontFamily: "sans-serif",
           }}
         >
